@@ -1,209 +1,453 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>GRITAL Mediterrane Küche</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GRITTAL – Mediterrane Küche</title>
+  <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Caveat:wght@700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="style.css" />
-    <style>
-    /* -------------------------------------------------
-       1. Global reset & mobile-first
-       ------------------------------------------------- */
-    *, *::before, *::after { box-sizing: border-box; }
-    body, html {
-      margin: 0; padding: 0;
-      font-family: system-ui, -apple-system, sans-serif;
-      line-height: 1.6;
-      background: #fff;
-      color: #333;
-    }
-
-    /* -------------------------------------------------
-       2. Header – logo container
-       ------------------------------------------------- */
-    .header {
-      position: relative;
-      width: 100%;
-      height: 60px;               /* compact on phones */
-      background: #1a1a1a;       /* dark fallback */
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .header img {
-      max-width: 90%;
-      max-height: 90%;
-      width: auto;
-      height: auto;
-      object-fit: contain;        /* ← Keeps aspect ratio, no distortion */
-    }
-
-    /* -------------------------------------------------
-       3. Responsive header height
-       ------------------------------------------------- */
-    @media (min-width: 640px) { .header { height: 80px; } }
-    @media (min-width: 1024px) { .header { height: 100px; } }
-
-    /* -------------------------------------------------
-       4. Main content (restaurant info)
-       ------------------------------------------------- */
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 2rem 1rem;
-    }
-
-    h1, h2 { text-align: center; }
-    .hero { font-size: 1.8rem; margin: 1rem 0; }
-    .section { margin: 2rem 0; }
-    .menu-item { margin: 1rem 0; padding: 1rem; background: #f9f9f9; border-radius: 8px; }
-
-    /* -------------------------------------------------
-       5. Footer
-       ------------------------------------------------- */
-    footer {
-      text-align: center;
-      padding: 1.5rem;
-      background: #1a1a1a;
-      color: #fff;
-      font-size: 0.9rem;
-    }
-  </style>
 </head>
 <body>
 
-  <div class="container">
+<div class="container">
 
-    <!-- Header with Logo -->
-    <header>
-      <div class="logo-container">
-        <img src="logo.png" alt="Delicious Bites Logo" class="logo">
-      </div>
-      <h1>GRITAL Mediterrane Küche</h1>
-      <p class="tagline"></p>
-      <div class="header-underline"></div>
-    </header>
-
-    <!-- Search -->
-    <div class="search-container">
-      <input type="text" id="menu-search" placeholder="Search any dish or flavor...">
-      <i class="fas fa-search search-icon"></i>
+  <!-- HEADER -->
+  <header>
+    <div class="logo-container">
+      <img src="logo.png" alt="GRITTAL Logo" class="logo">
     </div>
+    <h1>GRITTAL</h1>
+    <p class="tagline">Mediterrane Küche</p>
+    <div class="header-underline"></div>
+  </header>
 
-    <!-- Starters -->
-    <div class="menu-section">
-      <h2 class="section-title">Starters & Shares</h2>
-      <div class="menu-item">
-        <span class="item-name">Heritage Tomato Salad</span>
-        <span class="item-desc">Heirloom tomatoes, burrata, basil oil, balsamic pearls</span>
-        <span class="item-price">$12.99</span>
-      </div>
-      <div class="menu-item">
-        <span class="item-name">Truffle Fries</span>
-        <span class="item-desc">Crispy fries, truffle oil, parmesan, garlic aioli</span>
-        <span class="item-price">$7.99</span>
-      </div>
-      <div class="menu-item">
-        <span class="item-name">Calamari Fritti</span>
-        <span class="item-desc">Lightly fried squid, lemon, marinara</span>
-        <span class="item-price">$11.99</span>
-      </div>
-    </div>
-
-    <!-- Main Courses -->
-    <div class="menu-section">
-      <h2 class="section-title">Main Courses</h2>
-      <div class="menu-item">
-        <span class="item-name">Wild Mushroom Tagliatelle</span>
-        <span class="item-desc">Handmade pasta, foraged mushrooms, thyme, parmesan cream</span>
-        <span class="item-price">$16.99</span>
-      </div>
-      <div class="menu-item">
-        <span class="item-name">Grass-Fed Beef Burger</span>
-        <span class="item-desc">Local beef, aged cheddar, arugula, house pickles, brioche</span>
-        <span class="item-price">$14.99</span>
-      </div>
-      <div class="menu-item">
-        <span class="item-name">Pan-Seared Salmon</span>
-        <span class="item-desc">Atlantic salmon, lemon herb butter, quinoa, roasted veg</span>
-        <span class="item-price">$22.99</span>
-      </div>
-      <div class="menu-item">
-        <span class="item-name">Roasted Chicken</span>
-        <span class="item-desc">Free-range half chicken, garlic mash, seasonal greens</span>
-        <span class="item-price">$19.99</span>
-      </div>
-      <div class="menu-item">
-        <span class="item-name">Eggplant Parmesan</span>
-        <span class="item-desc">Breaded eggplant, marinara, mozzarella, basil (vegetarian)</span>
-        <span class="item-price">$15.99</span>
-      </div>
-    </div>
-
-    <!-- Desserts -->
-    <div class="menu-section">
-      <h2 class="section-title">Sweet Endings</h2>
-      <div class="menu-item">
-        <span class="item-name">Dark Chocolate Terrine</span>
-        <span class="item-desc">70% cacao, sea salt, olive oil, berries</span>
-        <span class="item-price">$8.99</span>
-      </div>
-      <div class="menu-item">
-        <span class="item-name">Tiramisu</span>
-        <span class="item-desc">Espresso-soaked ladyfingers, mascarpone, cocoa</span>
-        <span class="item-price">$7.99</span>
-      </div>
-      <div class="menu-item">
-        <span class="item-name">Seasonal Fruit Tart</span>
-        <span class="item-desc">Vanilla custard, fresh fruit, almond crust</span>
-        <span class="item-price">$8.49</span>
-      </div>
-    </div>
-
-    <!-- Drinks -->
-    <div class="menu-section">
-      <h2 class="section-title">Drinks</h2>
-      <div class="menu-item">
-        <span class="item-name">House Lemonade</span>
-        <span class="item-desc">Fresh-squeezed, mint, optional sparkling</span>
-        <span class="item-price">$4.99</span>
-      </div>
-      <div class="menu-item">
-        <span class="item-name">Craft Beer (Local)</span>
-        <span class="item-desc">Ask server for today's selection</span>
-        <span class="item-price">$6–$8</span>
-      </div>
-      <div class="menu-item">
-        <span class="item-name">Wine by the Glass</span>
-        <span class="item-desc">Red, white, or rosé — see board</span>
-        <span class="item-price">$9–$14</span>
-      </div>
-    </div>
-
-    <!-- RESERVATION BY PHONE -->
-    <div class="reservation-section">
-      <h2 class="section-title">Reserve a Table</h2>
-      <p class="reserve-text">We’d love to have you! Call us to book your table.</p>
-      <div class="phone-container">
-        <i class="fas fa-phone phone-icon"></i>
-        <a href="tel:+15559876543" class="phone-number">(555) 987-6543</a>
-      </div>
-      <p class="reserve-note">Open Tue–Sun: 11AM–10PM</p>
-    </div>
-
-    <!-- Footer -->
-    <footer>
-      <p><strong>123 Garden Lane, Greenhaven</strong></p>
-      <p>Phone: <strong>(555) 987-6543</strong> | Open Tue–Sun: <strong>11AM–10PM</strong></p>
-      <p>© 2025 Delicious Bites. Menu updated November 2025.</p>
-    </footer>
-
+  <!-- SEARCH -->
+  <div class="search-container">
+    <input type="text" id="menu-search" placeholder="Suche im Menü...">
+    <i class="fas fa-search search-icon"></i>
   </div>
 
-  <script src="script.js"></script>
+  <!-- GETRÄNKE 1 -->
+  <div class="menu-section">
+    <h2 class="section-title">BIER VOM FASS</h2>
+    <div class="menu-item">
+      <div class="item-name">Krombacher Pils</div>
+      <div class="item-details">
+        <span class="volume">0.3l</span><span>/</span><span class="volume">0.5l</span>
+        <span class="item-price">€3.80</span><span>/</span><span class="item-price">€4.60</span>
+      </div>
+    </div>
+    <div class="menu-item">
+      <div class="item-name">Krombacher Dunkel</div>
+      <div class="item-details">
+        <span class="volume">0.3l</span><span>/</span><span class="volume">0.5l</span>
+        <span class="item-price">€3.90</span><span>/</span><span class="item-price">€4.70</span>
+      </div>
+    </div>
+    <div class="menu-item">
+      <div class="item-name">Störtebeker Hell</div>
+      <div class="item-details">
+        <span class="volume">0.33l</span>
+        <span class="item-price">€3.70</span><span>/</span><span class="item-price">€4.50</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="menu-section">
+    <h2 class="section-title">FLASCHEN BIER</h2>
+    <div class="menu-item">
+      <div class="item-name">Krombacher Weizen</div>
+      <div class="item-details">
+        <span class="volume">0.5l</span>
+        <span class="item-price">€5.00</span>
+      </div>
+    </div>
+    <div class="menu-item">
+      <div class="item-name">Krombacher Weizen Alkoholfrei</div>
+      <div class="item-details">
+        <span class="volume">0.33l</span>
+        <span class="item-price">€4.00</span>
+      </div>
+    </div>
+    <div class="menu-item">
+      <div class="item-name">Krombacher Alkoholfrei</div>
+      <div class="item-details">
+        <span class="volume">0.33l</span>
+        <span class="item-price">€3.90</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- WEIN -->
+  <div class="menu-section">
+    <h2 class="section-title">WEIN</h2>
+
+    <h2 class="section-title">Glaswein Weiß</h2>
+    <div class="menu-item">
+      <div class="item-name">Pinot Grigio</div>
+      <div class="item-details">
+        <span class="volume">0.2l</span><span>/</span><span class="volume">0.5l</span>
+        <span class="item-price">€6.40</span><span>/</span><span class="item-price">€14.50</span>
+      </div>
+    </div>
+    <div class="menu-item">
+      <div class="item-name">Riesling</div>
+      <div class="item-details">
+        <span class="volume">0.2l</span><span>/</span><span class="volume">0.5l</span>
+        <span class="item-price">€6.40</span><span>/</span><span class="item-price">€14.50</span>
+      </div>
+    </div>
+    <div class="menu-item">
+      <div class="item-name">Chardonnay</div>
+      <div class="item-details">
+        <span class="volume">0.2l</span><span>/</span><span class="volume">0.5l</span>
+        <span class="item-price">€6.60</span><span>/</span><span class="item-price">€15.00</span>
+      </div>
+    </div>
+
+    <h2 class="section-title">Glaswein Rot</h2>
+    <div class="menu-item">
+      <div class="item-name">Montepulciano</div>
+      <div class="item-details">
+        <span class="volume">0.2l</span><span>/</span><span class="volume">0.5l</span>
+        <span class="item-price">€6.50</span><span>/</span><span class="item-price">€14.80</span>
+      </div>
+    </div>
+    <div class="menu-item">
+      <div class="item-name">Inglés</div>
+      <div class="item-details">
+        <span class="volume">0.2l</span><span>/</span><span class="volume">0.5l</span>
+        <span class="item-price">€6.60</span><span>/</span><span class="item-price">€15.00</span>
+      </div>
+    </div>
+
+    <h2 class="section-title">Flaschenwein Weiß</h2>
+    <div class="menu-item">
+      <div class="item-name">Sauvignon Blanc</div>
+      <div class="item-details"><span class="item-price">€21.00</span></div>
+    </div>
+    <div class="menu-item">
+      <div class="item-name">Cuvée</div>
+      <div class="item-details"><span class="item-price">€21.00</span></div>
+    </div>
+    <div class="menu-item">
+      <div class="item-name">Grauburgunder</div>
+      <div class="item-details"><span class="item-price">€24.00</span></div>
+    </div>
+    <div class="menu-item">
+      <div class="item-name">Riesling</div>
+      <div class="item-details"><span class="item-price">€26.00</span></div>
+    </div>
+
+    <h2 class="section-title">Flaschenwein Rot</h2>
+    <div class="menu-item">
+      <div class="item-name">Primitivo</div>
+      <div class="item-details"><span class="item-price">€22.00</span></div>
+    </div>
+    <div class="menu-item">
+      <div class="item-name">Merlot</div>
+      <div class="item-details"><span class="item-price">€19.00</span></div>
+    </div>
+    <div class="menu-item">
+      <div class="item-name">Chianti</div>
+      <div class="item-details"><span class="item-price">€24.00</span></div>
+    </div>
+    <div class="menu-item">
+      <div class="item-name">Cabernet Sauvignon</div>
+      <div class="item-details"><span class="item-price">€26.00</span></div>
+    </div>
+
+    <h2 class="section-title">Roséwein</h2>
+    <div class="menu-item">
+      <div class="item-name">Rosato di Toscana</div>
+      <div class="item-details"><span class="item-price">€5.40</span></div>
+    </div>
+  </div>
+
+  <!-- FLEISCH -->
+  <div class="menu-section">
+    <h2 class="section-title">FLEISCH</h2>
+    <p style="font-style: italic; color: #666; margin-bottom: 1rem; font-size: 0.95rem;">
+      Alle Gerichte werden mit Beilagen Ihrer Wahl serviert: Pommes, Reis, Salat oder Brot
+    </p>
+
+    <div class="menu-item">
+      <div class="item-name">58 RIB-EYE-STEAK (300 g)</div>
+      <div class="item-details"><span class="item-price">€29.90</span></div>
+    </div>
+    <div class="menu-item">
+      <div class="item-name">59 MIX-GRILL (FÜR 1 PERSON)</div>
+      <div class="item-details"><span class="item-price">€25.90</span></div>
+    </div>
+    <div class="menu-item">
+      <div class="item-name">60 LAMMFILET</div>
+      <div class="item-details"><span class="item-price">€27.90</span></div>
+    </div>
+    <div class="menu-item">
+      <div class="item-name">61 SCHWEIN SOUVLAKI</div>
+      <div class="item-details"><span class="item-price">€21.90</span></div>
+    </div>
+    <div class="menu-item">
+      <div class="item-name">62 HÄHNCHEN SOUVLAKI</div>
+      <div class="item-details"><span class="item-price">€19.90</span></div>
+    </div>
+  </div>
+
+  <!-- BEILAGEN -->
+  <div class="menu-section">
+    <h2 class="section-title">BEILAGEN</h2>
+    <div class="menu-item">
+      <div class="item-name">63 GEMÜSEPFANNE</div>
+      <div class="item-details"><span class="item-price">€5.90</span></div>
+    </div>
+    <div class="menu-item">
+      <div class="item-name">64 POMMES</div>
+      <div class="item-details"><span class="item-price">€4.90</span></div>
+    </div>
+    <div class="menu-item">
+      <div class="item-name">65 ROSMARINKARTOFFELN</div>
+      <div class="item-details"><span class="item-price">€5.90</span></div>
+    </div>
+    <div class="menu-item">
+      <div class="item-name">66 SÜSSKARTOFFELPOMMES</div>
+      <div class="item-details"><span class="item-price">€4.90</span></div>
+    </div>
+  </div>
+
+  <!-- DESSERT -->
+  <div class="menu-section">
+    <h2 class="section-title">DESSERT</h2>
+    <div class="menu-item">
+      <div class="item-name">68 TIRAMISU</div>
+      <div class="item-details"><span class="item-price">€5.90</span></div>
+    </div>
+    <div class="menu-item">
+      <div class="item-name">69 LOUKOUMADES MIT VANILLEEIS</div>
+      <div class="item-details"><span class="item-price">€7.90</span></div>
+    </div>
+    <div class="menu-item">
+      <div class="item-name">71 EISBECHER</div>
+      <div class="item-details"><span class="item-price">€4.50</span></div>
+    </div>
+  </div>
+
+  <!-- GETRÄNKE 2 -->
+  <div class="menu-section">
+    <h2 class="section-title">APERITIFS</h2>
+    <div class="menu-item">
+      <div class="item-name">Aperol Spritz</div>
+      <div class="item-details"><span class="item-price">€8.00</span></div>
+    </div>
+    <div class="menu-item">
+      <div class="item-name">Bitterer Aperitif</div>
+      <div class="item-details"><span class="item-price">€5.10</span></div>
+    </div>
+    <div class="menu-item">
+      <div class="item-name">Hugo</div>
+      <div class="item-details"><span class="item-price">€8.50</span></div>
+    </div>
+    <div class="menu-item">
+      <div class="item-name">Lillet Wildberry</div>
+      <div class="item-details"><span class="item-price">€8.00</span></div>
+    </div>
+    <div class="menu-item">
+      <div class="item-name">Sarti Spritz</div>
+      <div class="item-details"><span class="item-price">€8.00</span></div>
+    </div>
+  </div>
+
+  <div class="menu-section">
+    <h2 class="section-title">APERITIFS ALKOHOLFREI</h2>
+    <div class="menu-item">
+      <div class="item-name">Fruity Spritz</div>
+      <div class="item-details"><span class="item-price">€7.20</span></div>
+    </div>
+    <div class="menu-item">
+      <div class="item-name">Ginger Beer</div>
+      <div class="item-details"><span class="item-price">€4.90</span></div>
+    </div>
+    <div class="menu-item">
+      <div class="item-name">San Bitter Auf Eis</div>
+      <div class="item-details"><span class="item-price">€5.20</span></div>
+    </div>
+  </div>
+
+  <div class="menu-section">
+    <h2 class="section-title">SOFTDRINKS</h2>
+    <div class="menu-item">
+      <div class="item-name">Flasche Stilles Wasser</div>
+      <div class="item-details">
+        <span class="volume">0.75l</span>
+        <span class="item-price">€3.10</span>
+      </div>
+    </div>
+    <div class="menu-item">
+      <div class="item-name">Flasche Spritziges Wasser</div>
+      <div class="item-details">
+        <span class="volume">0.75l</span>
+        <span class="item-price">€3.10</span>
+      </div>
+    </div>
+    <div class="menu-item">
+      <div class="item-name">Flasche Mineral Wasser</div>
+      <div class="item-details">
+        <span class="volume">0.75l</span>
+        <span class="item-price">€7.80</span>
+      </div>
+    </div>
+    <div class="menu-item">
+      <div class="item-name">Coca Cola</div>
+      <div class="item-details">
+        <span class="volume">0.33l</span>
+        <span class="item-price">€3.90</span>
+      </div>
+    </div>
+    <div class="menu-item">
+      <div class="item-name">Fanta</div>
+      <div class="item-details">
+        <span class="volume">0.33l</span>
+        <span class="item-price">€3.90</span>
+      </div>
+    </div>
+    <div class="menu-item">
+      <div class="item-name">Sprite</div>
+      <div class="item-details">
+        <span class="volume">0.33l</span>
+        <span class="item-price">€3.90</span>
+      </div>
+    </div>
+    <div class="menu-item">
+      <div class="item-name">Red Bull</div>
+      <div class="item-details">
+        <span class="volume">0.25l</span>
+        <span class="item-price">€5.40</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="menu-section">
+    <h2 class="section-title">SCHWEPPES</h2>
+    <div class="menu-item">
+      <div class="item-name">Tonic</div>
+      <div class="item-details">
+        <span class="volume">0.2l</span>
+        <span class="item-price">€3.60</span>
+      </div>
+    </div>
+    <div class="menu-item">
+      <div class="item-name">Lemon</div>
+      <div class="item-details">
+        <span class="volume">0.2l</span>
+        <span class="item-price">€3.60</span>
+      </div>
+    </div>
+    <div class="menu-item">
+      <div class="item-name">Ginger Ale</div>
+      <div class="item-details">
+        <span class="volume">0.2l</span>
+        <span class="item-price">€3.60</span>
+      </div>
+    </div>
+    <div class="menu-item">
+      <div class="item-name">Wild Berry</div>
+      <div class="item-details">
+        <span class="volume">0.2l</span>
+        <span class="item-price">€3.60</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="menu-section">
+    <h2 class="section-title">SAFT UND SCHORLEN</h2>
+    <div class="menu-item">
+      <div class="item-name">Saft</div>
+      <div class="item-details"><span class="item-price">€4.20</span></div>
+    </div>
+    <div class="menu-item">
+      <div class="item-name">Schorle</div>
+      <div class="item-details"><span class="item-price">€3.90</span></div>
+    </div>
+  </div>
+
+  <!-- KAFFEE -->
+  <div class="menu-section">
+    <h2 class="section-title">KAFFEE SPEZIALITÄTEN</h2>
+    <div class="menu-item">
+      <div class="item-name">Espresso</div>
+      <div class="item-details"><span class="item-price">€2.60</span></div>
+    </div>
+    <div class="menu-item">
+      <div class="item-name">Espresso Doppio</div>
+      <div class="item-details"><span class="item-price">€3.90</span></div>
+    </div>
+    <div class="menu-item">
+      <div class="item-name">Cappuccino</div>
+      <div class="item-details"><span class="item-price">€3.90</span></div>
+    </div>
+    <div class="menu-item">
+      <div class="item-name">Caffè Latte</div>
+      <div class="item-details"><span class="item-price">€4.40</span></div>
+    </div>
+    <div class="menu-item">
+      <div class="item-name">Milchkaffee</div>
+      <div class="item-details"><span class="item-price">€4.00</span></div>
+    </div>
+    <div class="menu-item">
+      <div class="item-name">Kakao</div>
+      <div class="item-details"><span class="item-price">€3.90</span></div>
+    </div>
+  </div>
+
+  <div class="menu-section">
+    <h2 class="section-title">TEE SORTEN</h2>
+    <div class="menu-item">
+      <div class="item-name">Verschiedene Sorten</div>
+      <div class="item-details"><span class="item-price">€3.60</span></div>
+    </div>
+    <div class="menu-item">
+      <div class="item-name">Tee mit frischer Minze und Ingwer</div>
+      <div class="item-details"><span class="item-price">€4.60</span></div>
+    </div>
+  </div>
+
+  <div class="menu-section">
+    <h2 class="section-title">KAFFEE SPEZIALITÄTEN KALT / EISKAFFEE</h2>
+    <div class="menu-item">
+      <div class="item-name">Freddo Cappuccino</div>
+      <div class="item-details"><span class="item-price">€4.60</span></div>
+    </div>
+    <div class="menu-item">
+      <div class="item-name">Freddo Espresso</div>
+      <div class="item-details"><span class="item-price">€4.20</span></div>
+    </div>
+    <div class="menu-item">
+      <div class="item-name">Caffè Crema mit Milch</div>
+      <div class="item-details"><span class="item-price">€4.90</span></div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p><strong>GRITTAL – Mediterrane Küche</strong></p>
+    <p><a href="https://grittal.de" style="color:white;">www.grittal.de</a> | Öffnungszeiten: Mo–So 11:30–22:00</p>
+  </footer>
+
+</div>
+
+<script>
+  // Live Search
+  const searchInput = document.getElementById('menu-search');
+  const menuItems = document.querySelectorAll('.menu-item');
+
+  searchInput.addEventListener('input', () => {
+    const query = searchInput.value.toLowerCase().trim();
+    menuItems.forEach(item => {
+      const text = item.textContent.toLowerCase();
+      item.classList.toggle('hidden', query && !text.includes(query));
+    });
+  });
+</script>
+
 </body>
 </html>

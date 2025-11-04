@@ -7,6 +7,7 @@
   --soft-pink: #fce4ec;
   --gray: #555;
   --light: #f8f9fa;
+  --volume-color: #4682B4;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -53,6 +54,22 @@ h1 {
   margin: 0 auto;
 }
 
+/* Logo */
+.logo-container {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.logo {
+  height: 90px;
+  max-width: 280px;
+  width: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));
+  transition: transform 0.3s ease;
+}
+.logo:hover { transform: scale(1.05); }
+@media (max-width: 600px) { .logo { height: 70px; } }
+
 /* Search */
 .search-container {
   margin: 40px 0 50px;
@@ -85,7 +102,7 @@ h1 {
   pointer-events: none;
 }
 
-/* Menu Sections */
+/* Menu Sections – NOW CYCLES THROUGH ALL 5 COLORS */
 .menu-section {
   margin-bottom: 60px;
   padding: 30px;
@@ -94,10 +111,16 @@ h1 {
   transition: transform 0.3s ease;
 }
 .menu-section:hover { transform: translateY(-5px); }
-.menu-section:nth-child(2) { background: var(--soft-green); }
-.menu-section:nth-child(3) { background: var(--soft-peach); }
-.menu-section:nth-child(4) { background: var(--soft-blue); }
-.menu-section:nth-child(5) { background: var(--soft-pink); }
+
+/* Cycle through 5 soft colors – works for 100+ sections! */
+.menu-section:nth-child(5n+1) { background: var(--soft-green); }
+.menu-section:nth-child(5n+2) { background: var(--soft-peach); }
+.menu-section:nth-child(5n+3) { background: var(--soft-blue); }
+.menu-section:nth-child(5n+4) { background: var(--soft-pink); }
+.menu-section:nth-child(5n+5) { background: var(--light); }
+
+/* First section after header = 1st menu-section */
+.container > .menu-section:nth-child(1) { background: var(--soft-green); }
 
 .section-title {
   font-size: 2rem;
@@ -118,7 +141,6 @@ h1 {
   background-size: contain;
 }
 
-/* Menu Items */
 .menu-item {
   display: flex;
   justify-content: space-between;
@@ -127,6 +149,8 @@ h1 {
   opacity: 1;
   transition: 0.3s;
   align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 .menu-item:hover {
   background: rgba(255,255,255,0.7);
@@ -137,8 +161,23 @@ h1 {
 }
 .menu-item.hidden { opacity: 0.25; pointer-events: none; }
 
-.item-name { font-weight: 600; flex: 1; font-size: 1.1rem; color: #222; }
-.item-desc { flex: 2; font-size: 0.98rem; color: var(--gray); margin-left: 20px; font-style: italic; }
+.item-name { 
+  font-weight: 600; 
+  flex: 1; 
+  font-size: 1.1rem; 
+  color: #222; 
+}
+.item-details {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  font-size: 1rem;
+}
+.volume {
+  color: var(--volume-color);
+  font-weight: 500;
+}
 .item-price {
   font-weight: bold;
   color: white;
@@ -150,30 +189,6 @@ h1 {
   text-align: center;
   box-shadow: 0 2px 8px rgba(244,162,97,0.3);
 }
-
-/* Reservation Section */
-.reservation-section {
-  margin: 70px 0 50px;
-  padding: 40px;
-  background: linear-gradient(135deg, var(--primary), #2a5b3a);
-  border-radius: 24px;
-  text-align: center;
-  color: white;
-  box-shadow: 0 10px 30px rgba(48,104,68,0.2);
-}
-.reservation-section .section-title { color: white; margin-bottom: 20px; }
-.reservation-section .section-title::after {
-  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 10"><path d="M0,5 Q25,0 50,5 T100,5" stroke="%23f4a261" stroke-width="3" fill="none"/></svg>') no-repeat;
-  background-size: contain;
-}
-.reserve-text { font-size: 1.2rem; margin-bottom: 25px; opacity: 0.95; }
-.phone-container { display: flex; align-items: center; justify-content: center; gap: 12px; margin: 20px 0; }
-.phone-icon { font-size: 1.8rem; color: var(--accent); }
-.phone-number {
-  font-size: 2.2rem; font-weight: bold; color: white; text-decoration: none; transition: 0.3s;
-}
-.phone-number:hover { color: var(--accent); text-shadow: 0 0 10px rgba(244,162,97,0.5); }
-.reserve-note { font-size: 1rem; opacity: 0.9; margin-top: 15px; }
 
 /* Footer */
 footer {
@@ -188,7 +203,7 @@ footer {
 footer p { margin: 8px 0; }
 footer strong { font-weight: 600; }
 
-/* Print */
+/* Print & Responsive */
 @media print {
   body { padding: 15px; background: white; }
   .container { box-shadow: none; border-radius: 0; padding: 20px; }
@@ -196,59 +211,12 @@ footer strong { font-weight: 600; }
   .menu-section { background: white !important; padding: 15px 0; margin: 20px 0; }
   .menu-item { border-bottom: 1px solid #ccc; padding: 10px 0; }
   .item-price { background: #333; color: white; }
-  .reservation-section { background: #333; color: white; }
+  .volume { color: #555; }
   footer { background: #333; }
 }
-
-/* Responsive */
 @media (max-width: 600px) {
-  .menu-item { flex-direction: column; }
-  .item-desc { margin-left: 0; margin-top: 6px; }
-  .item-price { align-self: flex-end; margin-top: 8px; }
+  .menu-item { flex-direction: column; gap: 8px; }
+  .item-details { justify-content: flex-end; }
+  .item-price { align-self: flex-end; }
   .search-icon { right: 20px; }
-  .phone-number { font-size: 1.8rem; }
-  .phone-container { flex-direction: column; gap: 10px; }
-  .phone-icon { font-size: 1.5rem; }
-}
-/* ADD THIS TO YOUR EXISTING style.css */
-
-/* Logo Container */
-.logo-container {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.logo {
-  height: 90px;           /* Perfect size */
-  max-width: 280px;       /* Never too wide */
-  width: auto;
-  object-fit: contain;
-  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));
-  transition: transform 0.3s ease;
-}
-
-.logo:hover {
-  transform: scale(1.05);
-}
-
-/* Responsive Logo */
-@media (max-width: 600px) {
-  .logo {
-    height: 70px;
-  }
-}
-
-/* If logo fails to load, show fallback */
-.logo-container::before {
-  content: "Delicious Bites";
-  font-family: 'Caveat', cursive;
-  font-size: 2rem;
-  color: var(--accent);
-  display: block;
-  opacity: 0;
-}
-
-.logo:not(:defined) ~ .logo-container::before,
-.logo[src=""] ~ .logo-container::before {
-  opacity: 1;
 }
