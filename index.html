@@ -7,6 +7,72 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Caveat:wght@700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="style.css" />
+    <style>
+    /* -------------------------------------------------
+       1. Global reset & mobile-first
+       ------------------------------------------------- */
+    *, *::before, *::after { box-sizing: border-box; }
+    body, html {
+      margin: 0; padding: 0;
+      font-family: system-ui, -apple-system, sans-serif;
+      line-height: 1.6;
+      background: #fff;
+      color: #333;
+    }
+
+    /* -------------------------------------------------
+       2. Header – logo container
+       ------------------------------------------------- */
+    .header {
+      position: relative;
+      width: 100%;
+      height: 60px;               /* compact on phones */
+      background: #1a1a1a;       /* dark fallback */
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .header img {
+      max-width: 90%;
+      max-height: 90%;
+      width: auto;
+      height: auto;
+      object-fit: contain;        /* ← Keeps aspect ratio, no distortion */
+    }
+
+    /* -------------------------------------------------
+       3. Responsive header height
+       ------------------------------------------------- */
+    @media (min-width: 640px) { .header { height: 80px; } }
+    @media (min-width: 1024px) { .header { height: 100px; } }
+
+    /* -------------------------------------------------
+       4. Main content (restaurant info)
+       ------------------------------------------------- */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+    }
+
+    h1, h2 { text-align: center; }
+    .hero { font-size: 1.8rem; margin: 1rem 0; }
+    .section { margin: 2rem 0; }
+    .menu-item { margin: 1rem 0; padding: 1rem; background: #f9f9f9; border-radius: 8px; }
+
+    /* -------------------------------------------------
+       5. Footer
+       ------------------------------------------------- */
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      background: #1a1a1a;
+      color: #fff;
+      font-size: 0.9rem;
+    }
+  </style>
 </head>
 <body>
 
