@@ -693,3 +693,54 @@ footer a:hover {
 * {
   font-family: 'Montserrat', sans-serif;
 }
+/* PREVENT TEXT OVERFLOW IN MENU ITEMS – MOBILE & DESKTOP */
+.menu-item {
+  overflow: hidden;               /* Contain everything */
+}
+
+.item-name,
+.item-details .volume,
+.item-details .item-price {
+  white-space: nowrap;            /* Never wrap to new line */
+  overflow: hidden;               /* Hide overflow */
+  text-overflow: ellipsis;        /* Add … if too long */
+  display: block;                 /* Needed for ellipsis */
+  max-width: 100%;                /* Respect container */
+}
+
+/* For multi-line descriptions (keep them wrapped but contained) */
+.item-details .volume {
+  white-space: normal;            /* Allow wrapping */
+  word-wrap: break-word;          /* Break long words */
+  overflow-wrap: break-word;
+  hyphens: auto;                  /* Optional: smart hyphenation */
+}
+
+/* Special fix for price badge – keep it on same line */
+.item-price {
+  flex-shrink: 0;                 /* Never shrink */
+  min-width: 60px;
+  text-align: right;
+}
+
+/* Ensure flex layout doesn't break */
+.item-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: nowrap;
+}
+
+/* Responsive: tighten on small screens */
+@media (max-width: 480px) {
+  .item-name,
+  .item-details .volume {
+    font-size: 0.95rem;
+  }
+  
+  .item-price {
+    font-size: 0.95rem;
+    min-width: 55px;
+  }
+}
