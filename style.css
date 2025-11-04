@@ -617,3 +617,61 @@ footer a:hover {
   .reservation-title { font-size: 1.6rem; }
   .reservation-phone { font-size: 1.3rem; padding: 10px 20px; }
 }
+.category-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  padding: 1.2rem 0;
+  justify-content: center;
+  margin-bottom: 1.8rem;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.category-filters::-webkit-scrollbar {
+  display: none;
+}
+
+/* BUTTON STYLE */
+.filter-btn {
+  background: #ffffff;
+  border: 2px solid #e0e0e0;
+  color: #444;
+  padding: 0.55rem 1rem;
+  font-size: 0.82rem;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  white-space: nowrap;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  min-width: fit-content;
+}
+
+.filter-btn:hover {
+  background: #f8f9fa;
+  border-color: #d32f2f;
+  color: #d32f2f;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(211, 47, 47, 0.15);
+}
+
+.filter-btn.active {
+  background: #d32f2f;
+  color: white;
+  border-color: #d32f2f;
+  box-shadow: 0 4px 10px rgba(211, 47, 47, 0.3);
+  transform: translateY(-1px);
+  font-weight: 700;
+}
+
+/* Mobile: smooth horizontal scroll */
+@media (max-width: 768px) {
+  .category-filters {
+    justify-content: flex-start;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}

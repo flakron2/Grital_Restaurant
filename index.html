@@ -39,6 +39,39 @@
     <i class="fas fa-search search-icon"></i>
   </div>
 
+    <!-- CATEGORY FILTER BUTTONS -->
+  <div class="category-filters">
+    <button class="filter-btn active" data-category="all">Alle anzeigen</button>
+    <button class="filter-btn" data-category="ANTIPASTI / VORSPEISE (KALT)">Antipasti kalt</button>
+    <button class="filter-btn" data-category="ANTIPASTI / VORSPEISE (WARM)">Antipasti warm</button>
+    <button class="filter-btn" data-category="SUPPE">Suppe</button>
+    <button class="filter-btn" data-category="SALAT">Salat</button>
+    <button class="filter-btn" data-category="PIZZA">Pizza</button>
+    <button class="filter-btn" data-category="PASTA">Pasta</button>
+    <button class="filter-btn" data-category="VEGETARISCH">Vegetarisch</button>
+    <button class="filter-btn" data-category="FISCH">Fisch</button>
+    <button class="filter-btn" data-category="NACH ALBANISCHER ART">Albanisch</button>
+    <button class="filter-btn" data-category="FLEISCH">Fleisch</button>
+    <button class="filter-btn" data-category="BEILAGEN">Beilagen</button>
+    <button class="filter-btn" data-category="DESSERT">Dessert</button>
+    <button class="filter-btn" data-category="BIER VOM FASS">Bier Fass</button>
+    <button class="filter-btn" data-category="FLASCHEN BIER">Flaschenbier</button>
+    <button class="filter-btn" data-category="WEIN">Wein</button>
+    <button class="filter-btn" data-category="APERITIFS">Aperitifs</button>
+    <button class="filter-btn" data-category="APERITIFS ALKOHOLFREI">Aperitifs AF</button>
+    <button class="filter-btn" data-category="SOFTDRINKS">Softdrinks</button>
+    <button class="filter-btn" data-category="SCHWEPPES">Schweppes</button>
+    <button class="filter-btn" data-category="SAFT UND SCHORLEN">Säfte & Schorlen</button>
+    <button class="filter-btn" data-category="KAFFEE SPEZIALITÄTEN">Kaffee</button>
+    <button class="filter-btn" data-category="TEE SORTEN">Tee</button>
+    <button class="filter-btn" data-category="KAFFEE SPEZIALITÄTEN KALT / EISKAFFEE">Eiskaffee</button>
+    <button class="filter-btn" data-category="SHOTS">Shots</button>
+    <button class="filter-btn" data-category="BRÄNDE / COGNACS">Brände</button>
+    <button class="filter-btn" data-category="WHISKEY">Whiskey</button>
+    <button class="filter-btn" data-category="COCKTAILS">Cocktails</button>
+    <button class="filter-btn" data-category="ALKOHOLFREIE COCKTAILS">Cocktails AF</button>
+  </div>
+
   <!-- ANTIPASTI / VORSPEISE (KALT) -->
   <div class="menu-section">
     <h2 class="section-title">ANTIPASTI / VORSPEISE (KALT)</h2>
@@ -945,23 +978,77 @@
   const searchInput = document.getElementById('menu-search');
   const menuItems   = document.querySelectorAll('.menu-item');
   const sections    = document.querySelectorAll('.menu-section');
+  const filterBtns  = document.querySelectorAll('.filter-btn');
 
-  searchInput.addEventListener('input', () => {
-    const query = searchInput.value.toLowerCase().trim();
+  let activeCategory = 'all';
 
-    // 1. Loop through every single menu item
-    menuItems.forEach(item => {
-      const text = item.textContent.toLowerCase();
-      const matches = query === '' || text.includes(query);
-      item.style.display = matches ? '' : 'none';   // show or hide
-    });
+  // === FILTER BY CATEGORY ===
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      // Update active button
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
 
-    // 2. Show / hide whole sections that have no visible items
-    sections.forEach(sec => {
-      const visibleItems = sec.querySelectorAll('.menu-item[style=""]');
-      sec.style.display = visibleItems.length || query === '' ? '' : 'none';
+      activeCategory = btn.getAttribute('data-category');
+      applyFilters();
     });
   });
+
+  // === SEARCH INPUT ===
+  searchInput.addEventListener('input', () => {
+    applyFilters();
+  });
+
+  // === MAIN FILTER FUNCTION ===
+  function applyFilters() {
+    const query = searchInput.value.toLowerCase().trim();
+
+    let anyVisible = false;
+
+    sections.forEach(sec => {
+      const sectionTitle = sec.querySelector('.section-title')?.textContent || '';
+      const shouldShowSection = activeCategory === 'all' || sectionTitle === activeCategory;
+
+      let sectionHasVisibleItem = false;
+
+      sec.querySelectorAll('.menu-item').forEach(item => {
+        const itemText = item.textContent.toLowerCase();
+        const matchesSearch = query === '' || itemText.includes(query);
+        const matchesCategory = shouldShowSection;
+
+        const shouldShow = matchesSearch && matchesCategory;
+        item.style.display = shouldShow ? '' : 'none';
+
+        if (shouldShow) {
+          sectionHasVisibleItem = true;
+          anyVisible = true;
+        }
+      });
+
+      // Show/hide entire section
+      sec.style.display = (sectionHasVisibleItem || (activeCategory === 'all' && query === '')) ? '' : 'none';
+    });
+
+    // If nothing matches, show a message
+    if (!anyVisible && query !== '') {
+      if (!document.getElementById('no-results')) {
+        const msg = document.createElement('div');
+        msg.id = 'no-results';
+        msg.textContent = 'Keine Gerichte gefunden.';
+        msg.style.textAlign = 'center';
+        msg.style.padding = '2rem';
+        msg.style.color = '#999';
+        msg.style.fontStyle = 'italic';
+        document.querySelector('.container').appendChild(msg);
+      }
+    } else {
+      const noResults = document.getElementById('no-results');
+      if (noResults) noResults.remove();
+    }
+  }
+
+  // Initial load
+  applyFilters();
 </script>
 
 </body>
