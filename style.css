@@ -778,3 +778,20 @@ footer a:hover {
     padding: 0 0.6rem;
   }
 }
+.section-title {
+  cursor: pointer;
+  position: relative;
+}
+
+.section-title:hover,
+.section-title.tapped {
+  white-space: normal;
+  overflow: visible;
+  text-overflow: clip;
+  background: #f8f9fa;
+  padding: 0.8rem 1rem;
+  border-radius: 12px;
+  margin: 1.5rem 0.5rem 1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  z-index: 10;
+}
