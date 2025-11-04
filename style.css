@@ -303,7 +303,287 @@ footer strong { font-weight: 600; }
   line-height: 1.6;
 }
 
+.reservation-phone {/* ============================================================= */
+/*  GRITTAL Restaurant Menu – EXACT STYLE (dark-blue + orange)  */
+/*  Copy & paste this entire file into style.css                */
+/* ============================================================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: #f8f5f0;
+  color: #333;
+  line-height: 1.6;
+  padding: 1rem;
+  margin: 0;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+/* HEADER */
+header {
+  text-align: center;
+  padding: 2rem 1.5rem;
+  background: linear-gradient(135deg, #2c3e50, #1a2530);
+  color: white;
+  position: relative;
+}
+
+.logo-container {
+  width: 90px;
+  height: 90px;
+  margin: 0 auto 1rem;
+  border: 3px solid #f39c12;
+  border-radius: 50%;
+  padding: 5px;
+  background: white;
+}
+
+.logo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 50%;
+}
+
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.8rem;
+  margin: 0.5rem 0;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.tagline {
+  font-size: 1.1rem;
+  opacity: 0.9;
+  font-weight: 300;
+}
+
+.header-underline {
+  width: 80px;
+  height: 3px;
+  background: #f39c12;
+  margin: 1rem auto;
+  border-radius: 2px;
+}
+
+/* SEARCH */
+.search-container {
+  padding: 1rem 1.5rem;
+  background: #f8f9fa;
+  border-bottom: 1px solid #eee;
+  position: relative;
+}
+
+#menu-search {
+  width: 100%;
+  padding: 0.8rem 1rem 0.8rem 2.5rem;
+  border: 1px solid #ddd;
+  border-radius: 25px;
+  font-size: 1rem;
+  outline: none;
+  transition: all 0.3s;
+}
+
+#menu-search:focus {
+  border-color: #f39c12;
+  box-shadow: 0 0 0 3px rgba(243, 156, 18, 0.1);
+}
+
+.search-icon {
+  position: absolute;
+  left: 2.3rem;
+  top: 1.8rem;
+  color: #999;
+  font-size: 1.1rem;
+}
+
+/* MENU SECTIONS */
+.menu-section {
+  padding: 1.5rem;
+  border-bottom: 1px solid #eee;
+}
+
+.menu-section:last-of-type {
+  border-bottom: none;
+}
+
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  color: #2c3e50;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #f39c12;
+  display: inline-block;
+}
+
+/* MENU ITEMS */
+.menu-item {
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px dashed #eee;
+}
+
+.menu-item:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.item-name {
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: #2c3e50;
+  margin-bottom: 0.3rem;
+}
+
+.item-name sup {
+  font-size: 0.7rem;
+  color: #e74c3c;
+  margin-left: 2px;
+}
+
+.item-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.volume {
+  font-size: 0.85rem;
+  color: #777;
+  font-style: italic;
+}
+
+.item-price {
+  font-weight: 600;
+  color: #27ae60;
+  font-size: 1.1rem;
+}
+
+/* TWO SIZES */
+.has-two-sizes {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.size-col {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  font-size: 0.9rem;
+}
+
+.size-col .volume {
+  min-width: 40px;
+  font-style: normal;
+  color: #555;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* RESERVATION */
+.reservation-section {
+  background: linear-gradient(135deg, #1a2530, #2c3e50);
+  color: white;
+  text-align: center;
+  padding: 2rem 1.5rem;
+}
+
+.reservation-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #f39c12;
+}
+
+.reservation-title {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  font-family: 'Playfair Display', serif;
+}
+
+.reservation-text {
+  margin-bottom: 1rem;
+  opacity: 0.9;
+}
+
 .reservation-phone {
+  display: inline-block;
+  background: #f39c12;
+  color: white !important;
+  padding: 0.8rem 1.5rem;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin: 1rem 0;
+  transition: 0.3s;
+}
+
+.reservation-phone:hover {
+  background: #e67e22;
+  transform: translateY(-2px);
+}
+
+.reservation-hours {
+  font-size: 0.95rem;
+  margin-top: 1rem;
+  opacity: 0.9;
+}
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 1.5rem;
+  background: #2c3e50;
+  color: white;
+  font-size: 0.9rem;
+}
+
+footer a {
+  color: #f39c12;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+/* PRINT STYLES */
+@media print {
+  body { padding: 0; background: white; }
+  .container { box-shadow: none; max-width: none; }
+  .search-container, .reservation-section { display: none; }
+  .menu-section { page-break-inside: avoid; }
+  .menu-item { border-bottom: 1px solid #ddd; }
+  .section-title { border-bottom: 1px solid #000; }
+}
+
+/* RESPONSIVE */
+@media (max-width: 600px) {
+  h1 { font-size: 2.2rem; }
+  .section-title { font-size: 1.4rem; }
+  .has-two-sizes { flex-direction: column; gap: 0.3rem; }
+  .size-col { justify-content: space-between; }
+}
   display: inline-block;
   font-size: 1.5rem;
   font-weight: 700;
