@@ -755,7 +755,7 @@ footer a:hover {
   text-align: center;
   line-height: 1.3;
 
-  /* PREVENT OVERFLOW */
+  /* ELLIPSIS FOR LONG TITLES */
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -763,12 +763,73 @@ footer a:hover {
   display: block;
 }
 
-/* RESPONSIVE: Scale down safely on mobile */
+/* ====================== MENU ITEM NAMES – FULL TEXT, NO ELLIPSIS ====================== */
+.item-name {
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: #222;
+  line-height: 1.35;
+  margin-bottom: 0.35rem;
+
+  /* FULL TEXT – NEVER CUT OFF */
+  white-space: normal;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+  max-width: 100%;
+}
+
+/* ====================== PRICE BADGE – STAYS ON RIGHT ====================== */
+.item-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 0.5rem;
+  flex-wrap: nowrap;
+  width: 100%;
+  overflow: hidden;
+}
+
+.item-details .volume {
+  flex: 1;
+  min-width: 0;
+  font-size: 0.92rem;
+  color: #555;
+  line-height: 1.4;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+  white-space: normal;
+}
+
+.item-details .item-price {
+  flex-shrink: 0;
+  background: #ff8c42;
+  color: white;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: 30px;
+  min-width: 68px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* ====================== RESPONSIVE ====================== */
 @media (max-width: 768px) {
   .section-title {
     font-size: 1.25rem;
-    margin: 1.5rem 0 0.9rem;
     padding: 0 0.8rem;
+  }
+  .item-name {
+    font-size: 1rem;
+  }
+  .item-details .volume {
+    font-size: 0.88rem;
+  }
+  .item-details .item-price {
+    font-size: 0.9rem;
+    min-width: 62px;
   }
 }
 
@@ -776,6 +837,9 @@ footer a:hover {
   .section-title {
     font-size: 1.15rem;
     padding: 0 0.6rem;
+  }
+  .item-name {
+    font-size: 0.98rem;
   }
 }
 .section-title {
