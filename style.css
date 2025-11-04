@@ -675,3 +675,7 @@ footer a:hover {
     padding-right: 1rem;
   }
 }
+
+* {
+  font-family: 'Montserrat', sans-serif;
+}
