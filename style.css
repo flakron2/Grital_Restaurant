@@ -170,6 +170,7 @@ h1 {
 /* For items with **two** sizes (e.g. 0.3l / 0.5l) */
 .item-details.has-two-sizes {
   display: flex;
+  justify-content: flex-end;      /* push columns to the right */
   gap: 20px;
   flex-wrap: wrap;
 }
@@ -177,7 +178,7 @@ h1 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-width: 80px;
+  min-width: 78px;
 }
 .size-col .volume {
   color: var(--volume-color);
@@ -196,7 +197,7 @@ h1 {
   box-shadow: 0 2px 8px rgba(244,162,97,0.3);
 }
 
-/* For items with **one** size (fallback) */
+/* Fallback for items with ONE size (unchanged) */
 .item-details:not(.has-two-sizes) {
   display: flex;
   align-items: center;
@@ -218,6 +219,14 @@ h1 {
   box-shadow: 0 2px 8px rgba(244,162,97,0.3);
 }
 
+/* Mobile tweak – centre columns when screen is narrow */
+@media (max-width: 600px) {
+  .item-details.has-two-sizes {
+    justify-content: center;
+    gap: 12px;
+  }
+  .size-col { min-width: 70px; }
+}
 /* ---------- FOOTER ---------- */
 footer {
   text-align: center;
@@ -251,4 +260,80 @@ footer strong { font-weight: 600; }
   .item-price { background: #333; color: white; }
   .volume { color: #555; }
   footer { background: #333; }
+}
+/* ---------- RESERVATION BY CALL ---------- */
+.reservation-section {
+  margin: 60px 0 50px;
+  padding: 32px;
+  background: linear-gradient(135deg, var(--soft-green), var(--soft-peach));
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(48,104,68,0.1);
+  transition: transform 0.3s ease;
+}
+.reservation-section:hover {
+  transform: translateY(-5px);
+}
+
+.reservation-icon {
+  width: 70px;
+  height: 70px;
+  margin: 0 auto 16px;
+  background: var(--primary);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  box-shadow: 0 4px 12px rgba(48,104,68,0.2);
+}
+
+.reservation-title {
+  font-size: 1.8rem;
+  color: var(--primary);
+  margin: 0 0 12px;
+  font-weight: 700;
+}
+
+.reservation-text {
+  font-size: 1.1rem;
+  color: #444;
+  margin: 0 0 20px;
+  line-height: 1.6;
+}
+
+.reservation-phone {
+  display: inline-block;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary);
+  text-decoration: none;
+  padding: 12px 24px;
+  background: white;
+  border-radius: 30px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+}
+.reservation-phone:hover {
+  background: var(--accent);
+  color: white;
+  transform: scale(1.05);
+}
+.reservation-phone i {
+  margin-right: 8px;
+}
+
+.reservation-hours {
+  margin: 16px 0 0;
+  font-size: 0.95rem;
+  color: #666;
+  font-style: italic;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .reservation-section { padding: 24px; }
+  .reservation-title { font-size: 1.6rem; }
+  .reservation-phone { font-size: 1.3rem; padding: 10px 20px; }
 }
