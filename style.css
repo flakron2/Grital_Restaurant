@@ -70,37 +70,57 @@ h1 {
 @media (max-width:600px) { .logo { height:70px; } }
 
 /* ==================== SEARCH ==================== */
+/* ==================== SEARCH – ICON INSIDE ON ALL DEVICES ==================== */
 .search-container {
-  margin:40px 0 50px;
-  text-align:center;
-  position:relative;
-}
-#menu-search {
-  width:100%;
-  max-width:520px;
-  padding:16px 50px 16px 20px;
-  font-size:1.1rem;
-  border:2px solid #e0e0e0;
-  border-radius:30px;
-  outline:none;
-  background:#fafafa;
-  transition:.3s;
-}
-#menu-search:focus {
-  border-color:var(--primary);
-  background:#fff;
-  box-shadow:0 0 0 4px rgba(48,104,68,.1);
-}
-.search-icon {
-  position:absolute;
-  right:180px;
-  top:50%;
-  transform:translateY(-50%);
-  color:var(--primary);
-  font-size:1.3rem;
-  pointer-events:none;
+  margin: 40px 0 50px;
+  text-align: center;
+  position: relative;
+  max-width: 520px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
+#menu-search {
+  width: 100%;
+  padding: 16px 48px 16px 20px;   /* ← 48px right padding = space for icon */
+  font-size: 1.1rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 30px;
+  outline: none;
+  background: #fafafa;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+#menu-search:focus {
+  border-color: var(--primary);
+  background: #fff;
+  box-shadow: 0 0 0 4px rgba(48,104,68,0.1);
+}
+
+/* ICON – positioned inside input */
+.search-icon {
+  position: absolute;
+  right: 16px;                    /* ← 16px from right edge of INPUT */
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--primary);
+  font-size: 1.3rem;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* MOBILE: tighter spacing */
+@media (max-width: 600px) {
+  #menu-search {
+    padding: 14px 44px 14px 18px;
+    font-size: 1rem;
+  }
+  .search-icon {
+    right: 12px;
+    font-size: 1.1rem;
+  }
+}
 /* ==================== FILTER BUTTONS ==================== */
 .category-filters {
   display:flex;
