@@ -152,10 +152,11 @@ h1 {
 }
 
 /* Buttons stay same size */
+/* ==================== FILTER BUTTONS – FIXED TEXT VISIBILITY ==================== */
 .filter-btn {
-  flex: 0 0 auto;              /* ← Don't grow/shrink */
-  background: #fff;
-  color: #444;
+  flex: 0 0 auto;
+  background: #44c571 !important;
+  color: #444 !important;           /* ← Always dark when inactive */
   font-family: 'Montserrat', sans-serif;
   font-weight: 600;
   font-size: 0.82rem;
@@ -174,17 +175,17 @@ h1 {
 }
 
 .filter-btn:hover {
-  background: #fdfdfd;
+  background: #3acf14 !important;
   border-color: #d32f2f;
-  color: #d32f2f;
+  color: #d32f2f !important;
   transform: translateY(-1.5px);
   box-shadow: 0 5px 12px rgba(211,47,47,0.18);
 }
 
 .filter-btn.active {
-  background: #d32f2f;
-  color: #fff;
-  border-color: #d32f2f;
+  background: #34bb19 !important;
+  color: #080000 !important;          /* ← White text only when active */
+  border-color: #34bb19;
   font-weight: 700;
   box-shadow: 0 5px 14px rgba(211,47,47,0.32);
   transform: translateY(-1px);
