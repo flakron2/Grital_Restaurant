@@ -122,54 +122,92 @@ h1 {
   }
 }
 /* ==================== FILTER BUTTONS ==================== */
+/* ==================== CATEGORY FILTERS – HORIZONTAL SCROLL ==================== */
 .category-filters {
-  display:flex;
-  flex-wrap:wrap;
-  gap:.65rem;
-  justify-content:center;
-  padding:1.3rem 1rem 1.8rem;
-  margin:0 auto;
+  display: flex;
+  flex-wrap: nowrap;           /* ← Force single row */
+  overflow-x: auto;            /* ← Enable horizontal scroll */
+  gap: 0.65rem;
+  justify-content: flex-start;
+  padding: 1.3rem 1rem 1.8rem;
+  margin: 0 auto;
+  max-width: 100%;
+  scrollbar-width: thin;       /* Firefox: thin scrollbar */
+  -webkit-overflow-scrolling: touch; /* Smooth iOS scroll */
 }
+
+/* Hide scrollbar but keep functionality (optional, looks cleaner) */
+.category-filters::-webkit-scrollbar {
+  height: 6px;
+}
+.category-filters::-webkit-scrollbar-track {
+  background: transparent;
+}
+.category-filters::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,0.2);
+  border-radius: 3px;
+}
+.category-filters::-webkit-scrollbar-thumb:hover {
+  background: rgba(0,0,0,0.4);
+}
+
+/* Buttons stay same size */
 .filter-btn {
-  background:#fff;
-  color:#444;
-  font-family:'Montserrat',sans-serif;
-  font-weight:600;
-  font-size:.82rem;
-  letter-spacing:.3px;
-  padding:.6rem 1.1rem;
-  border:2px solid #e2e2e2;
-  border-radius:30px;
-  cursor:pointer;
-  transition:all .28s ease;
-  white-space:nowrap;
-  box-shadow:0 2px 5px rgba(0,0,0,.06);
-  min-height:40px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
+  flex: 0 0 auto;              /* ← Don't grow/shrink */
+  background: #fff;
+  color: #444;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 0.82rem;
+  letter-spacing: 0.3px;
+  padding: 0.6rem 1.1rem;
+  border: 2px solid #e2e2e2;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.28s ease;
+  white-space: nowrap;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.06);
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
 .filter-btn:hover {
-  background:#fdfdfd;
-  border-color:#d32f2f;
-  color:#d32f2f;
-  transform:translateY(-1.5px);
-  box-shadow:0 5px 12px rgba(211,47,47,.18);
+  background: #fdfdfd;
+  border-color: #d32f2f;
+  color: #d32f2f;
+  transform: translateY(-1.5px);
+  box-shadow: 0 5px 12px rgba(211,47,47,0.18);
 }
+
 .filter-btn.active {
-  background:#d32f2f;
-  color:#fff;
-  border-color:#d32f2f;
-  font-weight:700;
-  box-shadow:0 5px 14px rgba(211,47,47,.32);
-  transform:translateY(-1px);
+  background: #d32f2f;
+  color: #fff;
+  border-color: #d32f2f;
+  font-weight: 700;
+  box-shadow: 0 5px 14px rgba(211,47,47,0.32);
+  transform: translateY(-1px);
 }
-@media (max-width:768px){
-  .category-filters{padding:1rem .8rem 1.5rem;gap:.55rem;}
-  .filter-btn{font-size:.78rem;padding:.55rem .95rem;min-height:38px;}
+
+/* Mobile: tighter spacing */
+@media (max-width: 768px) {
+  .category-filters {
+    padding: 1rem 0.8rem 1.5rem;
+    gap: 0.55rem;
+  }
+  .filter-btn {
+    font-size: 0.78rem;
+    padding: 0.55rem 0.95rem;
+    min-height: 38px;
+  }
 }
-@media (max-width:480px){
-  .filter-btn{font-size:.76rem;padding:.5rem .85rem;}
+
+@media (max-width: 480px) {
+  .filter-btn {
+    font-size: 0.76rem;
+    padding: 0.5rem 0.85rem;
+  }
 }
 
 /* ==================== MENU SECTIONS ==================== */
@@ -191,37 +229,42 @@ h1 {
 
 /* Section title */
 .section-title {
-  font-size:2rem;
-  color:var(--primary);
-  margin-bottom:25px;
-  position:relative;
-  display:inline-block;
-  font-weight:700;
-  cursor:pointer;
-}
-.section-title::after{
-  content:'';
-  position:absolute;
-  bottom:-10px;
-  left:0;
-  width:70%;
-  height:5px;
-  background:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 10"><path d="M0,5 Q25,0 50,5 T100,5" stroke="%23f4a261" stroke-width="3" fill="none"/></svg>') no-repeat;
-  background-size:contain;
+  font-size: 2rem;
+  color: var(--primary);
+  margin-bottom: 25px;
+  position: relative;
+  display: inline-block;
+  font-weight: 700;
+  cursor: default;
+  -webkit-tap-highlight-color: transparent !important;
+  -webkit-user-select: none !important;
+  user-select: none !important;
+  pointer-events: none;
 }
 
-/* Tap-to-expand long titles on mobile */
-.section-title.tapped,
-.section-title:hover{
-  white-space:normal;
-  overflow:visible;
-  text-overflow:clip;
-  background:#f8f9fa;
-  padding:.8rem 1rem;
-  border-radius:12px;
-  margin:1.5rem .5rem 1rem;
-  box-shadow:0 2px 8px rgba(0,0,0,.08);
-  z-index:10;
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 70%;
+  height: 5px;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 10"><path d="M0,5 Q25,0 50,5 T100,5" stroke="%23f4a261" stroke-width="3" fill="none"/></svg>') no-repeat;
+  background-size: contain;
+}
+
+/* Remove hover/tap expand styles */
+.section-title:hover,
+.section-title.tapped {
+  white-space: normal !important;
+  overflow: visible !important;
+  text-overflow: clip !important;
+  background: transparent !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  margin: 0 0 25px !important;
+  box-shadow: none !important;
+  z-index: auto !important;
 }
 
 /* ==================== MENU ITEM ==================== */
@@ -456,5 +499,85 @@ div[style*="background: #f8f9fa"]{
 .flavour-note strong {
   font-style: normal;
   color: #444;
+}
+
+/* ============================================================= */
+/*  REMOVE HOVER/TAP HIGHLIGHT BOXES (iOS/Android/Chrome)        */
+/* ============================================================= */
+
+/* 1. Remove tap highlight on mobile */
+* {
+  -webkit-tap-highlight-color: transparent;   /* iOS Safari / Android Chrome */
+}
+
+/* 2. Remove default focus outline (optional – keeps accessibility) */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* 3. Prevent text selection “box” on double-tap (mobile) */
+.category-filters,
+.menu-item,
+.item-name,
+.filter-btn {
+  -webkit-user-select: none;   /* Disable selection */
+  user-select: none;
+}
+
+/* 4. Re-enable selection only where needed (e.g. search input) */
+#menu-search {
+  -webkit-user-select: text;
+  user-select: text;
+}
+
+/* 5. Optional: Keep hover effect on buttons only (no background flash) */
+.filter-btn:hover,
+.menu-item:hover {
+  background: transparent !important;   /* Remove white flash */
+}
+/* ============================================================= */
+/*  REMOVE HOVER/TAP HIGHLIGHT FROM SECTION HEADERS             */
+/* ============================================================= */
+
+.section-title,
+.section-title * {
+  -webkit-tap-highlight-color: transparent !important;
+  -webkit-user-select: none;
+  user-select: none;
+  pointer-events: none;              /* Prevents tap box */
+}
+
+/* Re-enable interaction if you have clickable titles */
+.section-title {
+  pointer-events: auto;              /* Allows hover/click if needed */
+  cursor: default;
+}
+
+/* Optional: Keep your hover style but remove flash */
+.section-title:hover {
+  background: transparent !important;
+}
+.section-title,
+.section-title * {
+  -webkit-tap-highlight-color: transparent !important;
+  -webkit-touch-callout: none !important;     /* iOS: disables callout */
+  -webkit-user-select: none !important;
+  user-select: none !important;
+  outline: none !important;
+  cursor: default !important;
+}
+
+/* Keep hover effect but NO background flash */
+.section-title:hover,
+.section-title.tapped {
+  background: transparent !important;
+}
+
+/* If you still want tap-to-expand on mobile, use JS only */
+.section-title {
+  -webkit-appearance: none !important;
 }
 /* ==================== END OF FILE ==================== */
