@@ -123,64 +123,65 @@ h1 {
 }
 /* ==================== FILTER BUTTONS ==================== */
 /* ==================== CATEGORY FILTERS – HORIZONTAL SCROLL ==================== */
+/* ==================== SEXY UNDERLINE SCROLLBAR (LIKE YOUR PHOTO) ==================== */
 .category-filters {
   display: flex;
   flex-wrap: nowrap;
   overflow-x: auto;
   gap: 0.65rem;
   justify-content: flex-start;
-  padding: 1.3rem 1rem 1.8rem;
+  padding: 1.3rem 1rem 2.2rem 1rem;  /* extra bottom space for bar */
   margin: 0 auto;
   max-width: 100%;
-  scrollbar-width: thin;
+  scrollbar-width: none;             /* Firefox: hide default */
   -webkit-overflow-scrolling: touch;
-  position: relative;  /* ← For fade positioning */
+  position: relative;
 }
 
-/* Fade gradients on edges (hints at scrollable content) */
-/* .category-filters::before,
+/* Hide default scrollbar */
+.category-filters::-webkit-scrollbar {
+  display: none;
+}
+
+/* CUSTOM BEAUTIFUL BAR */
 .category-filters::after {
   content: '';
   position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 40px;  /* Fade width 
-  pointer-events: none;
-  z-index: 1;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-.category-filters::before {
-  left: 0;
-  background: linear-gradient(to right, #fdfdf9, transparent);
-}
-.category-filters::after {
-  right: 0;
-  background: linear-gradient(to left, #fdfdf9, transparent);
-}
-
-/* Show fades when scrollable 
-.category-filters.scrollable-left::before,
-.category-filters.scrollable-right::after {
-  opacity: 1;
-} */
-
-/* Hide scrollbar (keeps clean look) */
-.category-filters::-webkit-scrollbar {
-  height: 6px;
-}
-.category-filters::-webkit-scrollbar-track {
-  background: transparent;
-}
-.category-filters::-webkit-scrollbar-thumb {
-  background: rgba(0,0,0,0.2);
+  bottom: 8px;
+  left: 1rem;
+  right: 1rem;
+  height: 5px;
+  background: rgba(0,0,0,0.12);
   border-radius: 3px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
 }
-.category-filters::-webkit-scrollbar-thumb:hover {
-  background: rgba(0,0,0,0.4);
+
+/* The moving thumb */
+.category-filters::before {
+  content: '';
+  position: absolute;
+  bottom: 8px;
+  left: 1rem;
+  height: 5px;
+  background: var(--primary);
+  border-radius: 3px;
+  pointer-events: none;
+  width: 80px;
+  transform: translateX(0);
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 6px rgba(48,104,68,0.3);
+  opacity: 0;
+  /* ... existing styles ... */
+  width: var(--thumb-width, 80px);
+  transform: translateX(var(--thumb-left, 0%));
 }
-.category-filters {
-  -webkit-overflow-scrolling: auto !important;   /* THIS KILLS THE NATIVE FADE */
+
+/* Show bar + thumb when scrollable */
+.category-filters.has-content::after,
+.category-filters.has-content::before {
+  opacity: 1;
 }
 /* Buttons stay same size */
 /* ==================== FILTER BUTTONS – FIXED TEXT VISIBILITY ==================== */
@@ -653,47 +654,78 @@ input:focus-visible {
 }
 
 /* Right arrow – always visible if scrollable */
+/* ==================== SUPER SEXY SCROLL HINT ARROW ==================== */
 .filter-arrow-right {
   position: absolute;
-  right: 10px;
-  top: 40%;
+  right: 6px;
+  top: 50%;
   transform: translateY(-50%);
-  background: #ffffff;
-  border: none;
+  width: 56px;
+  height: 56px;
+  background: rgba(255, 255, 255, 0.95);
+  border: 3px solid var(--primary);
   border-radius: 50%;
-  width: 36px;
-  height: 36px;
+  box-shadow: 0 6px 20px rgba(48,104,68,0.25);
+  cursor: pointer;
+  z-index: 20;
+  opacity: 0;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
-  opacity: 0;
-  transition: opacity 0.3s ease, background 0.3s ease;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-  z-index: 2;
+  pointer-events: auto;
 }
 
-.category-filters.scrollable-right ~ .filter-arrow-right {
+/* Show only when needed */
+.category-filters.scrollable-right ~ .filter-arrow-right,
+.category-filters:not(.scrollable-left) ~ .filter-arrow-right {
   opacity: 1;
+  animation: pulse-glow 2s infinite;
 }
 
-.filter-arrow-right:hover {
-  background: #fff;
+/* Pulsing glow + bounce */
+@keyframes pulse-glow {
+  0%, 100% { 
+    box-shadow: 0 6px 20px rgba(48,104,68,0.25);
+    transform: translateY(-50%) scale(1);
+  }
+  50% { 
+    box-shadow: 0 8px 30px rgba(48,104,68,0.45);
+    transform: translateY(-50%) scale(1.08);
+  }
+}
+
+/* Hand + chevron inside */
+.filter-arrow-right::before {
+  content: "👉";
+  font-size: 28px;
+  animation: wiggle 1.5s infinite;
+  position: absolute;
 }
 
 .filter-arrow-right i {
   color: var(--primary);
-  font-size: 1.1rem;
+  font-size: 24px;
+  font-weight: bold;
+  margin-left: 4px;
 }
 
-/* Mobile tweaks */
-@media (max-width: 768px) {
+@keyframes wiggle {
+  0%, 100% { transform: translateX(0) rotate(0); }
+  25% { transform: translateX(3px) rotate(5deg); }
+  50% { transform: translateX(-2px) rotate(-3deg); }
+  75% { transform: translateX(3px) rotate(5deg); }
+}
+
+/* Mobile: slightly smaller */
+@media (max-width: 600px) {
   .filter-arrow-right {
+    width: 48px;
+    height: 48px;
     right: 4px;
-    width: 32px;
-    height: 32px;
   }
-  .filter-arrow-right i {
-    font-size: 1rem;
-  }
+  .filter-arrow-right::before { font-size: 24px; }
+  .filter-arrow-right i { font-size: 20px; }
 }
