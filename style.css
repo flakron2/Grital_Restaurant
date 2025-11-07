@@ -612,50 +612,78 @@ input:focus-visible {
 /* ==================== END OF FILE ==================== */
 
 /* ==================== FILTER WRAPPER + ARROW ==================== */
+/* ==================== FILTER WRAPPER + ARROW ==================== */
 .filter-wrapper {
   position: relative;
   max-width: 100%;
   margin: 0 auto;
 }
 
-/* Right arrow button */
+.category-filters {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  gap: 0.65rem;
+  justify-content: flex-start;
+  padding: 1.3rem 1rem 1.8rem;
+  margin: 0 auto;
+  max-width: 100%;
+  scrollbar-width: thin;
+  -webkit-overflow-scrolling: touch;
+}
+
+.category-filters::-webkit-scrollbar {
+  height: 6px;
+}
+.category-filters::-webkit-scrollbar-track {
+  background: transparent;
+}
+.category-filters::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,0.2);
+  border-radius: 3px;
+}
+.category-filters::-webkit-scrollbar-thumb:hover {
+  background: rgba(0,0,0,0.4);
+}
+
+/* Right arrow – always visible if scrollable */
 .filter-arrow-right {
   position: absolute;
-  right: 0;
+  right: 8px;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.9);
   border: none;
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
+  width: 36px;
+  height: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   opacity: 0;
   transition: opacity 0.3s ease, background 0.3s ease;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
   z-index: 2;
 }
 
-/* Show arrow when scrollable */
-.category-filters.scrollable-right + .filter-arrow-right {
-  opacity: 1;
+.category-filters.scrollable-right ~ .filter-arrow-right {
+  opacity: 1 !important;  /* Force show if scrollable */
 }
 
 .filter-arrow-right:hover {
-  background: rgba(255, 255, 255, 1);
+  background: #fff;
 }
 
 .filter-arrow-right i {
   color: var(--primary);
-  font-size: 1.2rem;
+  font-size: 1.1rem;
 }
 
-/* Mobile: smaller arrow */
-@media (max-width: 600px) {
+/* Mobile tweaks */
+@media (max-width: 768px) {
   .filter-arrow-right {
+    right: 4px;
     width: 32px;
     height: 32px;
   }

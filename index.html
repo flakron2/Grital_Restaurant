@@ -86,9 +86,9 @@
     <button class="filter-btn" data-category="WHISKEY">Whiskey</button>
     <button class="filter-btn" data-category="COCKTAILS">Cocktails</button>
     <button class="filter-btn" data-category="ALKOHOLFREIE COCKTAILS">Cocktails AF</button>
-    <button class="filter-arrow-right" aria-label="Scroll right">
-    <i class="fas fa-chevron-right"></i>
     </div>
+    <button class="filter-arrow-right" aria-label="Scroll right">
+      <i class="fas fa-chevron-right"></i>
     </button>
   </div>
 
@@ -981,33 +981,30 @@
 
 <script>
   const searchInput = document.getElementById('menu-search');
-  const menuItems   = document.querySelectorAll('.menu-item');
-  const sections    = document.querySelectorAll('.menu-section');
-  const filterBtns  = document.querySelectorAll('.filter-btn');
+  const menuItems = document.querySelectorAll('.menu-item');
+  const sections = document.querySelectorAll('.menu-section');
+  const filterBtns = document.querySelectorAll('.filter-btn');
 
   let activeCategory = 'all';
 
-  // === FILTER BY CATEGORY ===
+  // Filter buttons click
   filterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
-      // Update active button
       filterBtns.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-
       activeCategory = btn.getAttribute('data-category');
       applyFilters();
     });
   });
 
-  // === SEARCH INPUT ===
+  // Search input
   searchInput.addEventListener('input', () => {
     applyFilters();
   });
 
-  // === MAIN FILTER FUNCTION ===
+  // Main filter function
   function applyFilters() {
     const query = searchInput.value.toLowerCase().trim();
-
     let anyVisible = false;
 
     sections.forEach(sec => {
@@ -1030,11 +1027,9 @@
         }
       });
 
-      // Show/hide entire section
       sec.style.display = (sectionHasVisibleItem || (activeCategory === 'all' && query === '')) ? '' : 'none';
     });
 
-    // If nothing matches, show a message
     if (!anyVisible && query !== '') {
       if (!document.getElementById('no-results')) {
         const msg = document.createElement('div');
@@ -1052,8 +1047,31 @@
     }
   }
 
-  // Initial load
-  applyFilters();
+  applyFilters();  // Initial
+
+  // Scroll state for arrow
+  const filters = document.querySelector('.category-filters');
+  if (filters) {
+    const updateScrollState = () => {
+      filters.classList.toggle('scrollable-left', filters.scrollLeft > 0);
+      filters.classList.toggle('scrollable-right', filters.scrollLeft < filters.scrollWidth - filters.clientWidth - 1);
+    };
+
+    filters.addEventListener('scroll', updateScrollState);
+    window.addEventListener('resize', updateScrollState);
+    updateScrollState();  // Initial check
+  }
+
+  // Arrow click
+  const arrowRight = document.querySelector('.filter-arrow-right');
+  if (arrowRight && filters) {
+    arrowRight.addEventListener('click', () => {
+      filters.scrollTo({
+        left: filters.scrollLeft + 200,
+        behavior: 'smooth'
+      });
+    });
+  }
 </script>
 <!-- 
 <script>
