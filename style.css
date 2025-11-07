@@ -179,6 +179,9 @@ h1 {
 .category-filters::-webkit-scrollbar-thumb:hover {
   background: rgba(0,0,0,0.4);
 }
+.category-filters {
+  -webkit-overflow-scrolling: auto !important;   /* THIS KILLS THE NATIVE FADE */
+}
 /* Buttons stay same size */
 /* ==================== FILTER BUTTONS – FIXED TEXT VISIBILITY ==================== */
 .filter-btn {
