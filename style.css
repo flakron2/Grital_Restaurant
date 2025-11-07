@@ -610,3 +610,56 @@ input:focus-visible {
   -webkit-appearance: none !important;
 }
 /* ==================== END OF FILE ==================== */
+
+/* ==================== FILTER WRAPPER + ARROW ==================== */
+.filter-wrapper {
+  position: relative;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+/* Right arrow button */
+.filter-arrow-right {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.8);
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.3s ease, background 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  z-index: 2;
+}
+
+/* Show arrow when scrollable */
+.category-filters.scrollable-right + .filter-arrow-right {
+  opacity: 1;
+}
+
+.filter-arrow-right:hover {
+  background: rgba(255, 255, 255, 1);
+}
+
+.filter-arrow-right i {
+  color: var(--primary);
+  font-size: 1.2rem;
+}
+
+/* Mobile: smaller arrow */
+@media (max-width: 600px) {
+  .filter-arrow-right {
+    width: 32px;
+    height: 32px;
+  }
+  .filter-arrow-right i {
+    font-size: 1rem;
+  }
+}
