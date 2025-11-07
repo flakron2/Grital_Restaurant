@@ -617,6 +617,7 @@ input:focus-visible {
   position: relative;
   max-width: 100%;
   margin: 0 auto;
+  overflow: hidden;               /* hides anything that sticks out */
 }
 
 .category-filters {
@@ -625,11 +626,13 @@ input:focus-visible {
   overflow-x: auto;
   gap: 0.65rem;
   justify-content: flex-start;
-  padding: 1.3rem 1rem 1.8rem;
+  padding: 1.3rem 1rem 1.8rem 1rem;   /*  left/right padding */
   margin: 0 auto;
   max-width: 100%;
   scrollbar-width: thin;
   -webkit-overflow-scrolling: touch;
+  padding-right: 60px;            /*  makes space for the arrow */
+  box-sizing: border-box;
 }
 
 .category-filters::-webkit-scrollbar {
@@ -649,10 +652,10 @@ input:focus-visible {
 /* Right arrow – always visible if scrollable */
 .filter-arrow-right {
   position: absolute;
-  right: 8px;
+  right: 10px;
   top: 40%;
   transform: translateY(-50%);
-  background: rgba(255, 255, 255, 0.9);
+  background: #ffffff;
   border: none;
   border-radius: 50%;
   width: 36px;
@@ -668,7 +671,7 @@ input:focus-visible {
 }
 
 .category-filters.scrollable-right ~ .filter-arrow-right {
-  opacity: 1 !important;  /* Force show if scrollable */
+  opacity: 1;
 }
 
 .filter-arrow-right:hover {
