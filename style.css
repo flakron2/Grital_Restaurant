@@ -138,13 +138,13 @@ h1 {
 }
 
 /* Fade gradients on edges (hints at scrollable content) */
-.category-filters::before,
+/* .category-filters::before,
 .category-filters::after {
   content: '';
   position: absolute;
   top: 0;
   bottom: 0;
-  width: 40px;  /* Fade width */
+  width: 40px;  /* Fade width 
   pointer-events: none;
   z-index: 1;
   opacity: 0;
@@ -159,11 +159,11 @@ h1 {
   background: linear-gradient(to left, #fdfdf9, transparent);
 }
 
-/* Show fades when scrollable */
+/* Show fades when scrollable 
 .category-filters.scrollable-left::before,
 .category-filters.scrollable-right::after {
   opacity: 1;
-}
+} */
 
 /* Hide scrollbar (keeps clean look) */
 .category-filters::-webkit-scrollbar {
