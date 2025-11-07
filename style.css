@@ -650,7 +650,7 @@ input:focus-visible {
 .filter-arrow-right {
   position: absolute;
   right: 8px;
-  top: 50%;
+  top: 40%;
   transform: translateY(-50%);
   background: rgba(255, 255, 255, 0.9);
   border: none;
