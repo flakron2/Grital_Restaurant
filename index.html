@@ -88,6 +88,9 @@
     <button class="filter-btn" data-category="cocktails-af">Cocktails AF</button>
   </div>
 
+  <button class="filter-arrow-right" aria-label="Nach rechts scrollen">
+    <i class="fas fa-chevron-right"></i>
+  </button>
 </div>
 
   <!-- ANTIPASTI / VORSPEISE (KALT) -->
@@ -979,90 +982,71 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-  setTimeout(() => {
-    const searchInput = document.getElementById('menu-search');
-    const sections = document.querySelectorAll('.menu-section');
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    const filters = document.querySelector('.category-filters');
-    const arrow = document.querySelector('.filter-arrow-right');
+  const filters = document.querySelector('.category-filters');
+  const arrow = document.querySelector('.filter-arrow-right');
+  const searchInput = document.getElementById('menu-search');
+  const sections = document.querySelectorAll('.menu-section');
+  const filterBtns = document.querySelectorAll('.filter-btn');
 
-    let activeCategory = 'all';
+  const updateArrow = () => {
+    if (!filters || !arrow) return;
+    const canScroll = filters.scrollWidth > filters.clientWidth + 20;
+    const atEnd = filters.scrollLeft + filters.clientWidth >= filters.scrollWidth - 20;
+    arrow.classList.toggle('show', canScroll && !atEnd);
+  };
 
-    const cleanText = (str) => str.toLowerCase()
-      .replace(/\u200B/g, '')
-      .replace(/\s+/g, ' ')
-      .trim();
+  arrow.onclick = () => {
+    filters.scrollBy({ left: 220, behavior: 'smooth' });
+  };
 
-    const applyFilters = () => {
-      const query = cleanText(searchInput.value);
-      let anyVisible = false;
+  const applyFilters = () => {
+    const query = (searchInput?.value || '').toLowerCase().trim();
+    const activeBtn = document.querySelector('.filter-btn.active');
+    const activeCat = activeBtn?.dataset.category || 'all';
+    let anyVisible = false;
 
-      sections.forEach(sec => {
-        const titleEl = sec.querySelector('.section-title');
-        const sectionKey = titleEl?.getAttribute('data-key') || '';
-        const activeBtn = document.querySelector('.filter-btn.active');
-        const activeKey = activeBtn?.getAttribute('data-category') || 'all';
+    sections.forEach(sec => {
+      const cat = sec.querySelector('.section-title')?.dataset.key || '';
+      const catMatch = activeCat === 'all' || cat === activeCat;
+      let hasItem = false;
 
-        const categoryMatch = activeKey === 'all' || sectionKey === activeKey;
-
-        let sectionHasItem = false;
-
-        sec.querySelectorAll('.menu-item').forEach(item => {
-          const itemText = cleanText(item.textContent);
-          const matchesSearch = !query || itemText.includes(query);
-          const show = matchesSearch && categoryMatch;
-
-          item.style.display = show ? '' : 'none';
-          if (show) {
-            sectionHasItem = true;
-            anyVisible = true;
-          }
-        });
-
-        sec.style.display = (sectionHasItem || (activeKey === 'all' && !query)) ? '' : 'none';
+      sec.querySelectorAll('.menu-item').forEach(item => {
+        const match = item.textContent.toLowerCase().includes(query) && catMatch;
+        item.style.display = match ? '' : 'none';
+        if (match) hasItem = true, anyVisible = true;
       });
 
-      // No results
-      const noRes = document.getElementById('no-results');
-      if (!anyVisible && query) {
-        if (!noRes) {
-          const div = document.createElement('div');
-          div.id = 'no-results';
-          div.innerHTML = 'Keine Gerichte gefunden';
-          div.style.cssText = 'text-align:center;padding:3rem;color:#999;font-style:italic;';
-          document.querySelector('.container').appendChild(div);
-        }
-      } else if (noRes) noRes.remove();
-    };
-
-    // Button clicks
-    filterBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        filterBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        activeCategory = btn.getAttribute('data-category');
-        applyFilters();
-      });
+      sec.style.display = (hasItem || (activeCat === 'all' && !query)) ? '' : 'none';
     });
 
-    searchInput.addEventListener('input', applyFilters);
-
-    // Arrow
-    if (filters && arrow) {
-      const updateArrow = () => {
-        const atEnd = filters.scrollWidth - filters.clientWidth - filters.scrollLeft < 10;
-        arrow.style.opacity = atEnd ? '0' : '1';
-      };
-      filters.addEventListener('scroll', updateArrow);
-      window.addEventListener('resize', updateArrow);
-      updateArrow();
-      arrow.addEventListener('click', () => {
-        filters.scrollBy({ left: 240, behavior: 'smooth' });
-      });
+    document.getElementById('no-results')?.remove();
+    if (!anyVisible && query) {
+      const msg = document.createElement('div');
+      msg.id = 'no-results';
+      msg.textContent = 'Keine Gerichte gefunden';
+      msg.style.cssText = 'text-align:center;padding:4rem;color:#999;font-style:italic;font-size:1.1rem;';
+      document.querySelector('.container').appendChild(msg);
     }
 
+    updateArrow();
+  };
+
+  filterBtns.forEach(btn => {
+    btn.onclick = () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      applyFilters();
+    };
+  });
+
+  searchInput?.addEventListener('input', applyFilters);
+  filters?.addEventListener('scroll', updateArrow);
+  window.addEventListener('resize', updateArrow);
+
+  setTimeout(() => {
     applyFilters();
-  }, 800);
+    updateArrow();
+  }, 300);
 });
 </script>
 <!-- 
