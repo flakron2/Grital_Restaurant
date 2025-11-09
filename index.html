@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GRITTAL Restaurant – Speisekarte</title>
+  <title>GRITAL Restaurant – Speisekarte</title>
 
   <!-- GOOGLE FONTS -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
@@ -29,7 +29,7 @@
     <div class="logo-container">
       <img src="logo.png" alt="GRITTAL Logo" class="logo">
     </div>
-    <h1>GRITTAL</h1>
+    <h1>GRITAL</h1>
     <p class="tagline">Mediterrane Küche</p>
     <div class="header-underline"></div>
   </header>
@@ -972,7 +972,7 @@
   <!-- FOOTER -->
   <footer>
     <p><strong>GRITTAL – Mediterrane Küche</strong></p>
-    <p><a href="https://grittal.de" style="color:white;">www.grittal.de</a> | Öffnungszeiten: Di–So 4:00–22:30 | Mo geschlossen</p>
+    <p><a href="https://grital.de" style="color:white;">www.grital.de</a> | Öffnungszeiten: Di-Do 16:00-22:30 | Fr-Sa 16:00-23:30| So 12:00-22:30| Montag geschlossen</p>
   </footer>
 
 </div>
@@ -1074,6 +1074,29 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 </script> -->
-
+<script>
+// FINAL SCROLLBAR
+const f = document.querySelector('.category-filters');
+if (f) {
+  const upd = () => {
+    const max = f.scrollWidth - f.clientWidth;
+    if (max > 10) {
+      f.classList.add('show-bar');
+      const p = f.scrollLeft / max;
+      const track = f.clientWidth - 32;
+      const thumb = Math.max(track * (f.clientWidth / f.scrollWidth), 40);
+      const left = p * (track - thumb);
+      f.style.setProperty('--w', thumb + 'px');
+      f.style.setProperty('--l', left + 'px');
+    } else f.classList.remove('show-bar');
+  };
+  f.addEventListener('scroll', upd);
+  window.addEventListener('resize', upd);
+  upd();
+}
+const s = document.createElement('style');
+s.textContent = `.category-filters::before { width: var(--w,80px)!important; transform: translateX(var(--l,0px))!important; }`;
+document.head.appendChild(s);
+</script>
 </body>
 </html>
