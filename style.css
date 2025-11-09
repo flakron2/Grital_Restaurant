@@ -123,6 +123,66 @@ h1 {
 }
 /* ==================== FILTER BUTTONS ==================== */
 /* ==================== CATEGORY FILTERS – HORIZONTAL SCROLL ==================== */
+/* ==================== SEXY UNDERLINE SCROLLBAR (LIKE YOUR PHOTO) ==================== */
+.category-filters {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  gap: 0.65rem;
+  justify-content: flex-start;
+  padding: 1.3rem 1rem 2.2rem 1rem;  /* extra bottom space for bar */
+  margin: 0 auto;
+  max-width: 100%;
+  scrollbar-width: none;             /* Firefox: hide default */
+  -webkit-overflow-scrolling: touch;
+  position: relative;
+}
+
+/* Hide default scrollbar */
+.category-filters::-webkit-scrollbar {
+  display: none;
+}
+
+/* CUSTOM BEAUTIFUL BAR */
+.category-filters::after {
+  content: '';
+  position: absolute;
+  bottom: 8px;
+  left: 1rem;
+  right: 1rem;
+  height: 5px;
+  background: rgba(0,0,0,0.12);
+  border-radius: 3px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+/* The moving thumb */
+.category-filters::before {
+  content: '';
+  position: absolute;
+  bottom: 8px;
+  left: 1rem;
+  height: 5px;
+  background: var(--primary);
+  border-radius: 3px;
+  pointer-events: none;
+  width: 80px;
+  transform: translateX(0);
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 6px rgba(48,104,68,0.3);
+  opacity: 0;
+  /* ... existing styles ... */
+  width: var(--thumb-width, 80px);
+  transform: translateX(var(--thumb-left, 0%));
+}
+
+/* Show bar + thumb when scrollable */
+.category-filters.has-content::after,
+.category-filters.has-content::before {
+  opacity: 1;
+}
 /* Buttons stay same size */
 /* ==================== FILTER BUTTONS – FIXED TEXT VISIBILITY ==================== */
 .filter-btn {
@@ -553,45 +613,119 @@ input:focus-visible {
 .section-title {
   -webkit-appearance: none !important;
 }
-.filter-wrapper { position: relative; overflow: hidden; }
+/* ==================== END OF FILE ==================== */
+
+/* ==================== FILTER WRAPPER + ARROW ==================== */
+/* ==================== FILTER WRAPPER + ARROW ==================== */
+.filter-wrapper {
+  position: relative;
+  max-width: 100%;
+  margin: 0 auto;
+  overflow: hidden;               /* hides anything that sticks out */
+}
+
 .category-filters {
   display: flex;
   flex-wrap: nowrap;
   overflow-x: auto;
   gap: 0.65rem;
-  padding: 1.3rem 1rem 2.4rem 1rem;
-  scrollbar-width: none;
+  justify-content: flex-start;
+  padding: 1.3rem 1rem 1.8rem 1rem;   /*  left/right padding */
+  margin: 0 auto;
+  max-width: 100%;
+  scrollbar-width: thin;
   -webkit-overflow-scrolling: touch;
-  position: relative;
-}
-.category-filters::-webkit-scrollbar { display: none; }
-
-.category-filters::after {
-  content: '';
-  position: absolute;
-  bottom: 10px;
-  left: 1rem;
-  right: 1rem;
-  height: 4px;
-  background: rgba(0,0,0,0.15);
-  border-radius: 2px;
-  opacity: 0;
-  transition: opacity 0.4s ease;
+  padding-right: 60px;            /*  makes space for the arrow */
+  box-sizing: border-box;
 }
 
-.category-filters::before {
-  content: '';
-  position: absolute;
-  bottom: 10px;
-  left: 1rem;
+.category-filters::-webkit-scrollbar {
   height: 6px;
-  background: var(--primary);
+}
+.category-filters::-webkit-scrollbar-track {
+  background: transparent;
+}
+.category-filters::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,0.2);
   border-radius: 3px;
-  box-shadow: 0 2px 6px rgba(48,104,68,0.4);
-  opacity: 0;
-  transition: all 0.35s ease;
+}
+.category-filters::-webkit-scrollbar-thumb:hover {
+  background: rgba(0,0,0,0.4);
 }
 
-.category-filters.show-bar::before,
-.category-filters.show-bar::after { opacity: 1; }
-/* ==================== END OF FILE ==================== */
+/* Right arrow – always visible if scrollable */
+/* ==================== SUPER SEXY SCROLL HINT ARROW ==================== */
+.filter-arrow-right {
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 56px;
+  height: 56px;
+  background: rgba(255, 255, 255, 0.95);
+  border: 3px solid var(--primary);
+  border-radius: 50%;
+  box-shadow: 0 6px 20px rgba(48,104,68,0.25);
+  cursor: pointer;
+  z-index: 20;
+  opacity: 0;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: auto;
+}
+
+/* Show only when needed */
+.category-filters.scrollable-right ~ .filter-arrow-right,
+.category-filters:not(.scrollable-left) ~ .filter-arrow-right {
+  opacity: 1;
+  animation: pulse-glow 2s infinite;
+}
+
+/* Pulsing glow + bounce */
+@keyframes pulse-glow {
+  0%, 100% { 
+    box-shadow: 0 6px 20px rgba(48,104,68,0.25);
+    transform: translateY(-50%) scale(1);
+  }
+  50% { 
+    box-shadow: 0 8px 30px rgba(48,104,68,0.45);
+    transform: translateY(-50%) scale(1.08);
+  }
+}
+
+/* Hand + chevron inside */
+.filter-arrow-right::before {
+  content: "👉";
+  font-size: 28px;
+  animation: wiggle 1.5s infinite;
+  position: absolute;
+}
+
+.filter-arrow-right i {
+  color: var(--primary);
+  font-size: 24px;
+  font-weight: bold;
+  margin-left: 4px;
+}
+
+@keyframes wiggle {
+  0%, 100% { transform: translateX(0) rotate(0); }
+  25% { transform: translateX(3px) rotate(5deg); }
+  50% { transform: translateX(-2px) rotate(-3deg); }
+  75% { transform: translateX(3px) rotate(5deg); }
+}
+
+/* Mobile: slightly smaller */
+@media (max-width: 600px) {
+  .filter-arrow-right {
+    width: 48px;
+    height: 48px;
+    right: 4px;
+  }
+  .filter-arrow-right::before { font-size: 24px; }
+  .filter-arrow-right i { font-size: 20px; }
+}

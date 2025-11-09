@@ -29,7 +29,7 @@
     <div class="logo-container">
       <img src="logo.png" alt="GRITTAL Logo" class="logo">
     </div>
-    <h1>GRITAL</h1>
+    <h1>GRITTAL</h1>
     <p class="tagline">Mediterrane Küche</p>
     <div class="header-underline"></div>
   </header>
@@ -1074,29 +1074,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 </script> -->
-<script>
-// FINAL SCROLLBAR
-const f = document.querySelector('.category-filters');
-if (f) {
-  const upd = () => {
-    const max = f.scrollWidth - f.clientWidth;
-    if (max > 10) {
-      f.classList.add('show-bar');
-      const p = f.scrollLeft / max;
-      const track = f.clientWidth - 32;
-      const thumb = Math.max(track * (f.clientWidth / f.scrollWidth), 40);
-      const left = p * (track - thumb);
-      f.style.setProperty('--w', thumb + 'px');
-      f.style.setProperty('--l', left + 'px');
-    } else f.classList.remove('show-bar');
-  };
-  f.addEventListener('scroll', upd);
-  window.addEventListener('resize', upd);
-  upd();
-}
-const s = document.createElement('style');
-s.textContent = `.category-filters::before { width: var(--w,80px)!important; transform: translateX(var(--l,0px))!important; }`;
-document.head.appendChild(s);
-</script>
+
 </body>
 </html>
