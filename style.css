@@ -609,6 +609,7 @@ input:focus-visible {
 .section-title {
   -webkit-appearance: none !important;
 }
+
 .filter-wrapper {
   position: relative;
   overflow: hidden;
@@ -620,8 +621,7 @@ input:focus-visible {
   flex-wrap: nowrap;
   overflow-x: auto;
   gap: 0.65rem;
-  padding: 1.3rem 1rem 1.8rem 1rem;
-  padding-right: 70px; /* space for arrow */
+  padding: 1.3rem 70px 1.8rem 1rem; /* right padding for arrow */
   scrollbar-width: none;
   -webkit-overflow-scrolling: touch;
 }
@@ -635,24 +635,29 @@ input:focus-visible {
   width: 44px;
   height: 40px;
   background: white;
-  border: 2.5px solid #54996c;
+  border: 2.5px solid #3faa65;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 15px rgba(67, 155, 97, 0.25);
+  box-shadow: 0 4px 15px rgba(48,104,68,0.25);
   cursor: pointer;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.3s ease;
   transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 100;
 }
-.filter-arrow-right i {
-  color: #47a066;
+
+/* FORCE CHEVRON – KILLS ANY HAND EMOJI */
+.filter-arrow-right i::before {
+  content: "\f054" !important; /* fa-chevron-right */
+  font-family: "Font Awesome 6 Free" !important;
+  font-weight: 900 !important;
+  color: #49a76a;
   font-size: 1.5rem;
-  font-weight: bold;
 }
+
+/* SHOW + GROW ON HOVER */
 .filter-arrow-right.show {
   opacity: 1;
   pointer-events: auto;
@@ -661,16 +666,13 @@ input:focus-visible {
   transform: translateY(-50%) scale(1.05);
   box-shadow: 0 8px 25px rgba(48,104,68,0.4);
 }
-.filter-arrow-right.show:hover i {
-  transform: scale(1.1);
-}
+
+/* Mobile */
 @media (max-width: 600px) {
+  .category-filters { padding-right: 60px; }
   .filter-arrow-right {
     width: 40px;
     height: 40px;
     right: 10px;
-  }
-  .filter-arrow-right.show:hover {
-    transform: translateY(-50%) scale(1.06);
   }
 }
