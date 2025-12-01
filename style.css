@@ -808,7 +808,7 @@ input:focus-visible {
   }
 }
 
-/* ❄ SNOW ONLY INSIDE CHRISTMAS BOX ❄ */
+/* ❄ SNOW ONLY INSIDE CHRISTMAS BOX ❄
 .christmas-inner {
   position: relative;
   overflow: hidden;
@@ -833,7 +833,6 @@ input:focus-visible {
   will-change: transform;
 }
 
-/* Depth layers */
 .christmas-overlay .flake.front {
   font-size: 28px;
   animation-duration: 11s;
@@ -853,20 +852,19 @@ input:focus-visible {
   opacity: 0.55;
 }
 
-/* Falling + drifting */
+
 @keyframes fall {
   0% { transform: translateY(0) translateX(0) rotate(0deg); }
   100% { transform: translateY(120%) translateX(calc(sin(var(--drift)) * 20px)) rotate(360deg); }
 }
 .snow-overlay {
   position: absolute;
-  inset: 0; /* top:0; left:0; bottom:0; right:0 */
+  inset: 0; top:0; left:0; bottom:0; right:0 
   pointer-events: none;
-  z-index: 2; /* sits above background, below content */
+  z-index: 2;  sits above background, below content 
   overflow: hidden;
 }
 
-/* Snowflake style */
 .snow-overlay .flake {
   position: absolute;
   top: -40px;
@@ -877,8 +875,7 @@ input:focus-visible {
   will-change: transform;
 }
 
-/* Falling animation */
 @keyframes fall {
   0% { transform: translateY(0) translateX(0) rotate(0deg); }
   100% { transform: translateY(120%) translateX(calc(sin(var(--drift)) * 20px)) rotate(360deg); }
-}
+} */
