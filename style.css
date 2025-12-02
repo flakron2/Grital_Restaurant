@@ -680,7 +680,7 @@ input:focus-visible {
 /* WEIHNACHTSMENÜ BANNER – 100% MOBILE FIXED */
 .christmas-banner {
   margin: 30px auto 50px;
-  padding: 0 16px;
+  padding: 0 6px;
   width: 100%;
   box-sizing: border-box;
 }
@@ -688,7 +688,7 @@ input:focus-visible {
 .christmas-inner {
   background: linear-gradient(135deg, #a81e1e 10%, #A300 40%, #2a8506 100%);
   color: #0a8d0a;
-  padding: 36px 24px;
+  padding: 26px 14px;
   border-radius: 24px;
   text-align: center;
   box-shadow: 0 10px 30px rgba(139,26,26,0.4);
