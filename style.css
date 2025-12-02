@@ -706,8 +706,12 @@ input:focus-visible {
   font-weight: 700;
   text-shadow: 0 3px 8px rgba(0,0,0,0.5);
   color: #0a8d0a;
-}
-
+  white-space: normal !important;
+  overflow-wrap: break-word !important;
+  word-break: break-word !important;
+  hyphens: auto;
+  max-width: 100%;
+}s
 .christmas-date {
   font-size: 1.2rem;
   margin-bottom: 20px;
